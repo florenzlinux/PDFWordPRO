@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PDF -> Word PRO · proyecto WiX v4 · compilar con build_msi.bat -->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="PDF Word PRO"
+           Manufacturer="PDF Word PRO"
+           Version="1.2.0"
+           UpgradeCode="8f0e7c1a-5b2d-4e6f-9a3c-2d1b0e5f7a90"
+           Scope="perMachine">
+    <SummaryInformation Description="Conversor web PDF a DOCX editable y Markdown" />
+    <MajorUpgrade DowngradeErrorMessage="Ya hay instalada una versión más reciente." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="INSTALLFOLDER" Name="PDFWordPRO" />
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="AppShortcutFolder" Name="PDF Word PRO" />
+    </StandardDirectory>
+    <StandardDirectory Id="DesktopFolder" />
+
+    <!-- Todos los archivos de la app (carpeta app\ junto a este .wxs),
+         excepto el lanzador, que se define aparte para el acceso directo. -->
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="cmp_lanzador" Guid="1c4a9e62-7d3f-4b5a-8e20-6f2a91c3d5b7">
+        <File Id="fil_lanzador" Source="app\iniciar_windows.bat" KeyPath="yes" />
+        <Shortcut Id="sc_app"
+                  Directory="AppShortcutFolder"
+                  Name="PDF Word PRO"
+                  Target="[INSTALLFOLDER]iniciar_windows.bat"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Description="Arranca PDF Word PRO en http://localhost:8000" />
+        <Shortcut Id="sc_desktop"
+                  Directory="DesktopFolder"
+                  Name="PDF Word PRO"
+                  Target="[INSTALLFOLDER]iniciar_windows.bat"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Description="Arranca PDF Word PRO en http://localhost:8000" />
+        <RemoveFolder Id="rm_menu" Directory="AppShortcutFolder" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="AppFiles">
+      <Files Include="app\**"
+             Exclude="app\iniciar_windows.bat;app\data\jobs\**;app\**\__pycache__\**" />
+    </ComponentGroup>
+
+    <Feature Id="Main" Title="PDF Word PRO" Level="1">
+      <ComponentRef Id="cmp_lanzador" />
+      <ComponentGroupRef Id="AppFiles" />
+    </Feature>
+  </Package>
+</Wix>

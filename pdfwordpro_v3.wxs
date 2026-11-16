@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="{3D88BC2B-E174-50AD-9F90-117A5956B3FA}" Name="PDF Word PRO" Language="3082"
+           Version="1.2.0" Manufacturer="PDF Word PRO"
+           UpgradeCode="{F8FC698C-4E95-5B38-B171-CC9E81DD6BAF}">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
+             Description="Conversor web PDF a DOCX editable y Markdown" />
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+    <Icon Id="appico" SourceFile="pdfwordpro.ico" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="PDFWordPRO">
+          <Component Id="c_f_README_md" Guid="{0B4E8C2A-1DB5-5807-9CDA-ACEF171B4A7A}"><File Id="f_README_md" Name="README.md" Source="README.md" KeyPath="yes" /></Component>
+          <Component Id="c_f_requirements_txt" Guid="{0C9146E8-EBE0-50B2-A312-9E59468EEDBF}"><File Id="f_requirements_txt" Name="requirements.txt" Source="requirements.txt" KeyPath="yes" /></Component>
+          <Component Id="c_f_run_sh" Guid="{78472D15-293F-5628-B8D8-CEA7933EEADA}"><File Id="f_run_sh" Name="run.sh" Source="run.sh" KeyPath="yes" /></Component>
+          <Directory Id="d_f_app" Name="app">
+            <Component Id="c_f_app___init___py" Guid="{B952B73E-9C2E-549C-B152-8D80727615F1}"><File Id="f_app___init___py" Name="__init__.py" Source="app/__init__.py" KeyPath="yes" /></Component>
+            <Component Id="c_f_app_extract_py" Guid="{6740F398-CD78-53B7-B510-CA34E0324873}"><File Id="f_app_extract_py" Name="extract.py" Source="app/extract.py" KeyPath="yes" /></Component>
+            <Component Id="c_f_app_html_docx_py" Guid="{6A4E3E39-3E1F-5583-BF08-E18845AB79A6}"><File Id="f_app_html_docx_py" Name="html_docx.py" Source="app/html_docx.py" KeyPath="yes" /></Component>
+            <Component Id="c_f_app_html_md_py" Guid="{E2374EE0-2412-59AF-A1A2-ECD9370D7447}"><File Id="f_app_html_md_py" Name="html_md.py" Source="app/html_md.py" KeyPath="yes" /></Component>
+            <Component Id="c_f_app_importers_py" Guid="{EEF9AED0-4EA9-5B71-8819-7DC5D089E872}"><File Id="f_app_importers_py" Name="importers.py" Source="app/importers.py" KeyPath="yes" /></Component>
+            <Component Id="c_f_app_layout_docx_py" Guid="{935446A5-0775-5F52-B96E-9BB24767C817}"><File Id="f_app_layout_docx_py" Name="layout_docx.py" Source="app/layout_docx.py" KeyPath="yes" /></Component>
+            <Component Id="c_f_app_main_py" Guid="{77FE5063-50BC-5503-B503-B35DB974B9D7}"><File Id="f_app_main_py" Name="main.py" Source="app/main.py" KeyPath="yes" /></Component>
+            <Component Id="c_f_app_merge_py" Guid="{95DC6A7A-A1ED-5D50-ADFD-F07D20634639}"><File Id="f_app_merge_py" Name="merge.py" Source="app/merge.py" KeyPath="yes" /></Component>
+            <Directory Id="d_f_app_static" Name="static">
+              <Component Id="c_f_app_static_index_html" Guid="{01299D83-0C24-50A6-8B38-94D87403B605}"><File Id="f_app_static_index_html" Name="index.html" Source="app/static/index.html" KeyPath="yes" /></Component>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="AppShortcutFolder" Name="PDF Word PRO" />
+      </Directory>
+      <Directory Id="DesktopFolder" />
+    </Directory>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="cmp_lanzador" Guid="{D6BDEC74-EA1A-5FC0-859F-35F36CF1211D}">
+        <File Id="f_lanzador" Name="iniciar_windows.bat" Source="iniciar_windows.bat" KeyPath="yes">
+          <Shortcut Id="sc_menu" Directory="AppShortcutFolder" Name="PDF Word PRO"
+                    Description="Arranca PDF Word PRO en http://localhost:8000"
+                    WorkingDirectory="INSTALLFOLDER" Icon="appico" />
+          <Shortcut Id="sc_desktop" Directory="DesktopFolder" Name="PDF Word PRO"
+                    Description="Arranca PDF Word PRO en http://localhost:8000"
+                    WorkingDirectory="INSTALLFOLDER" Icon="appico" />
+        </File>
+      </Component>
+    </DirectoryRef>
+    <Feature Id="MainFeature" Title="PDF Word PRO" Level="1">
+      <ComponentRef Id="c_f_README_md" />
+      <ComponentRef Id="c_f_app___init___py" />
+      <ComponentRef Id="c_f_app_extract_py" />
+      <ComponentRef Id="c_f_app_html_docx_py" />
+      <ComponentRef Id="c_f_app_html_md_py" />
+      <ComponentRef Id="c_f_app_importers_py" />
+      <ComponentRef Id="c_f_app_layout_docx_py" />
+      <ComponentRef Id="c_f_app_main_py" />
+      <ComponentRef Id="c_f_app_merge_py" />
+      <ComponentRef Id="c_f_app_static_index_html" />
+      <ComponentRef Id="c_f_requirements_txt" />
+      <ComponentRef Id="c_f_run_sh" />
+      <ComponentRef Id="cmp_lanzador" />
+    </Feature>
+  </Product>
+</Wix>

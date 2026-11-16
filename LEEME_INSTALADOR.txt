@@ -1,0 +1,36 @@
+PDF -> Word PRO · Instalador para Windows (.msi)
+================================================
+
+EL .MSI YA VIENE COMPILADO (pdfwordpro.msi, en la app y en descargas\)
+---------------------------------------------------------------------
+Instala en Archivos de programa\PDFWordPRO y crea los accesos
+«PDF Word PRO» en el menu Inicio y en el escritorio, con su icono.
+Este paquete con el proyecto WiX se conserva por si quieres recompilarlo
+tu mismo en Windows (build_msi.bat) o personalizarlo.
+
+CONTENIDO DE ESTE ZIP
+---------------------
+- app\                 La aplicación completa (igual que la versión web .zip).
+- pdfwordpro.wxs       Proyecto de instalador WiX v4.
+- build_msi.bat        Doble clic y genera pdfwordpro.msi.
+
+PASOS
+-----
+1. Instala WiX Toolset v4:
+     - Con .NET SDK:   dotnet tool install --global wix
+     - O el instalador de https://wixtoolset.org
+2. Ejecuta build_msi.bat  ->  se crea pdfwordpro.msi junto a él.
+3. Ese .msi instala la app en «Archivos de programa\PDFWordPRO» y crea
+   el acceso directo «PDF Word PRO» en el menú Inicio.
+
+REQUISITO EN LOS EQUIPOS
+------------------------
+Python 3.11 o superior (https://www.python.org, marcando
+"Add python.exe to PATH"). La primera vez que se arranca, la app crea
+su entorno e instala sus dependencias automáticamente; después se abre en
+http://localhost:8000
+
+ALTERNATIVA SIN INSTALADOR
+--------------------------
+Descomprime la carpeta app\ donde quieras y haz doble clic en
+iniciar_windows.bat. Hace exactamente lo mismo sin instalar nada.
