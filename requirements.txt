@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+pymupdf
+python-docx
+pdf2docx
+python-multipart
+pydantic
+markdown-it-py
